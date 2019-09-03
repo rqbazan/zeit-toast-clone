@@ -5,17 +5,24 @@ import { INotifier, INotification, IMountOptions } from './types'
 
 export class ReactBasicNotifier implements INotifier {
   rootRef: React.RefObject<NotificationManager>
+  containerEl: HTMLDivElement
+
+  unmount() {
+    if (this.containerEl) {
+      ReactDOM.unmountComponentAtNode(this.containerEl)
+    }
+  }
 
   mount(options: IMountOptions) {
-    const containerEl = document.createElement('div')
+    this.containerEl = document.createElement('div')
 
-    document.body.appendChild(containerEl)
+    document.body.appendChild(this.containerEl)
 
     this.rootRef = React.createRef<NotificationManager>()
 
     ReactDOM.render(
       <NotificationManager {...options} ref={this.rootRef} />,
-      containerEl
+      this.containerEl
     )
   }
 
