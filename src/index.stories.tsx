@@ -34,7 +34,7 @@ const DemoApp: React.FC<Props> = props => {
   useNotifier(options)
 
   const notify = () => {
-    notifier.notify(notification)
+    notifier[notification.kind](notification.message)
   }
 
   return <button onClick={notify}>Show</button>

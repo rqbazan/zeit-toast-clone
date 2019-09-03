@@ -4,8 +4,15 @@ import NotificationManager from './notification-manager'
 import { INotifier, INotification, IMountOptions } from './types'
 
 export class ReactBasicNotifier implements INotifier {
-  rootRef: React.RefObject<NotificationManager>
-  containerEl: HTMLDivElement
+  private rootRef: React.RefObject<NotificationManager>
+
+  private containerEl: HTMLDivElement
+
+  private notify(notification: INotification) {
+    if (this.rootRef.current) {
+      this.rootRef.current.showNotification(notification)
+    }
+  }
 
   unmount() {
     if (this.containerEl) {
@@ -26,10 +33,20 @@ export class ReactBasicNotifier implements INotifier {
     )
   }
 
-  notify(notification: INotification) {
-    if (this.rootRef.current) {
-      this.rootRef.current.showNotification(notification)
-    }
+  error(message: string) {
+    this.notify({ message, kind: 'error' })
+  }
+
+  success(message: string) {
+    this.notify({ message, kind: 'success' })
+  }
+
+  warning(message: string) {
+    this.notify({ message, kind: 'warning' })
+  }
+
+  info(message: string) {
+    this.notify({ message, kind: 'info' })
   }
 }
 

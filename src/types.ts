@@ -12,9 +12,9 @@ export interface IMountOptions {
   zIndex?: number
 }
 
-export interface INotifier {
+export interface INotifier extends Toast {
+  unmount(): void
   mount(options: IMountOptions): void
-  notify(notification: INotification): void
 }
 
 export interface IIndexable {
@@ -23,3 +23,7 @@ export interface IIndexable {
 }
 
 export type IdxNotification = INotification & IIndexable
+
+export type Toast = {
+  [key in MessageKind]: (message: string) => void
+}
