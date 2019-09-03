@@ -1,21 +1,22 @@
 import * as React from 'react'
 import AnimatedContainer from '../animated-container'
 import IndexedArray from '../indexed-array'
+import Timer from '../timer'
 import { INotification, IdxNotification } from '../types'
 import { Container } from './elements'
 import { IState, IProps } from './types'
 
 class NotificationManager extends React.Component<IProps, IState> {
-  countNotifications: number = 0
+  countNotifications = 0
 
-  cleanUpTimerId: number
+  cleanUpTimer = new Timer()
 
-  dominoTimerId: number
+  dominoTimer = new Timer()
 
   state: IState = this.getInitialState()
 
   componentWillUnmount() {
-    this.clearTimeouts()
+    this.cancelTimers()
   }
 
   getInitialState(): IState {
@@ -26,31 +27,26 @@ class NotificationManager extends React.Component<IProps, IState> {
     }
   }
 
-  clearTimeouts = () => {
-    if (this.cleanUpTimerId) {
-      clearTimeout(this.cleanUpTimerId)
-    }
-
-    if (this.dominoTimerId) {
-      clearTimeout(this.dominoTimerId)
-    }
-  }
-
   domino = () => {
     if (!this.state.notifications.length) {
       return
     }
 
-    this.dominoTimerId = setTimeout(() => {
+    this.dominoTimer.init(() => {
       this.popNotification()
       this.domino()
     }, this.props.interval)
   }
 
-  setCleanUpTimeout = () => {
-    this.clearTimeouts()
+  cancelTimers = () => {
+    this.cleanUpTimer.cancel()
+    this.dominoTimer.cancel()
+  }
 
-    this.cleanUpTimerId = setTimeout(() => {
+  setupTimers = () => {
+    this.cancelTimers()
+
+    this.cleanUpTimer.init(() => {
       this.domino()
     }, this.props.timeout)
   }
@@ -72,7 +68,7 @@ class NotificationManager extends React.Component<IProps, IState> {
   }
 
   showNotification = (notification: INotification) => {
-    this.setCleanUpTimeout()
+    this.setupTimers()
 
     const updateState = (prevState: IState) => {
       const { notifications } = prevState
