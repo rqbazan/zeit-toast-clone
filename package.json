@@ -5,7 +5,8 @@
   "author": "Ricardo Alexis Quiroz Bazan <raquirozbazan@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "start-storybook"
+    "dev": "start-storybook",
+    "storybook": "build-storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
