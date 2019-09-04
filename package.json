@@ -5,7 +5,7 @@
   "author": "Ricardo Alexis Quiroz Bazan <raquirozbazan@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "start-storybook",
+    "dev": "start-storybook -p 6006",
     "storybook": "build-storybook"
   },
   "devDependencies": {
