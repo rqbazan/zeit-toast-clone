@@ -20,7 +20,7 @@ const useNotifier = (options: IMountOptions) => {
     return () => {
       notifier.unmount()
     }
-  }, [dependencies])
+  }, dependencies)
 }
 
 type Props = {
