@@ -33,8 +33,9 @@ class NotificationManager extends React.Component<IProps, IState> {
       return
     }
 
+    this.popNotification()
+
     this.dominoTimer.init(() => {
-      this.popNotification()
       this.domino()
     }, this.props.interval)
   }
