@@ -13,8 +13,8 @@ export interface IMountOptions {
 }
 
 export interface INotifier extends Toast {
-  unmount(): void
   mount(options: IMountOptions): void
+  unmount(): void
 }
 
 export interface IIndexable {

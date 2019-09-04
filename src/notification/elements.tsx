@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { IContainerProps, BgColors } from './types'
+import vars from '../vars'
 
 const bgColors: BgColors = {
   success: '#94ffd8',
@@ -19,6 +20,6 @@ export const Container = styled.div<IContainerProps>`
   box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 10px 0px;
   display: flex;
   font-family: 'Open Sans', sans-serif;
-  height: 64px;
+  height: ${vars.height}px;
   padding: 0 24px;
 `

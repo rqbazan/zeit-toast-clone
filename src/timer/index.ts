@@ -11,8 +11,17 @@ class Timer {
   }
 
   pause() {
+    if (!this.start) {
+      return
+    }
+
     clearTimeout(this.timerId)
-    this.remaining -= new Date().getTime() - this.start.getTime()
+
+    const now = new Date().getTime()
+    const start = this.start.getTime()
+    const elapsedTime = now - start
+
+    this.remaining -= elapsedTime
   }
 
   resume() {

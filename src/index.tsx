@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom'
 import NotificationManager from './notification-manager'
 import { INotifier, INotification, IMountOptions } from './types'
 
-export class ReactBasicNotifier implements INotifier {
+export class ZeitToast implements INotifier {
   private rootRef: React.RefObject<NotificationManager>
 
   private containerEl: HTMLDivElement
@@ -50,4 +50,4 @@ export class ReactBasicNotifier implements INotifier {
   }
 }
 
-export default new ReactBasicNotifier()
+export default new ZeitToast()

@@ -23,6 +23,7 @@ class NotificationManager extends React.Component<IProps, IState> {
     const { capacity } = this.props
 
     return {
+      isOverviewing: false,
       notifications: new IndexedArray<IdxNotification>(capacity + 1)
     }
   }
@@ -87,12 +88,33 @@ class NotificationManager extends React.Component<IProps, IState> {
     this.setState(updateState)
   }
 
+  turnOverviewOn = () => {
+    this.setState({ isOverviewing: true })
+    this.setupTimers()
+    this.cleanUpTimer.pause()
+  }
+
+  turnOverviewOff = () => {
+    this.setupTimers()
+    this.setState({ isOverviewing: false })
+  }
+
+  onAnimatedToogle = (isOverviewing: boolean) => {
+    if (isOverviewing) {
+      this.turnOverviewOn()
+    } else {
+      this.turnOverviewOff()
+    }
+  }
+
   render() {
     return (
       <Container zIndex={this.props.zIndex}>
         <AnimatedContainer
           capacity={this.props.capacity}
+          isOverviewing={this.state.isOverviewing}
           notifications={this.state.notifications}
+          onToogle={this.onAnimatedToogle}
         />
       </Container>
     )

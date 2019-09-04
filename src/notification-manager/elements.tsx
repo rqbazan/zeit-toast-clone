@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 import { ContainerProps } from './types'
-
-const defaultZIndex = 9999
+import vars from '../vars'
 
 const getZIndex = (props: ContainerProps) => {
-  return props.zIndex || defaultZIndex
+  return props.zIndex || vars.zIndex
 }
 
 export const Container = styled.div<ContainerProps>`
