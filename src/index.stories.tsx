@@ -37,7 +37,11 @@ const DemoApp: React.FC<IDemoAppProps> = props => {
     notifier[notification.kind](notification.message)
   }
 
-  return <button onClick={notify}>Show</button>
+  return (
+    <button type="button" onClick={notify}>
+      Show
+    </button>
+  )
 }
 
 export const Normal = () => {

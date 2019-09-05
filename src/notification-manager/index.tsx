@@ -3,11 +3,11 @@ import { Container } from './elements'
 import AnimatedContainer from '../animated-container'
 import InverseIndexedArray from '../helpers/inverse-indexed-array'
 import Timer from '../helpers/timer'
-import { INotification, IndexableNotification, IMountOptions } from '../types'
+import { INotification, AnimatedNotification, IMountOptions } from '../types'
 
 export interface IState {
   isOverviewing: boolean
-  notifications: InverseIndexedArray<IndexableNotification>
+  animatedNotifications: InverseIndexedArray<AnimatedNotification>
 }
 
 class NotificationManager extends React.Component<IMountOptions, IState> {
@@ -19,21 +19,21 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
 
   state: IState = this.getInitialState()
 
+  getInitialState(): IState {
+    return {
+      isOverviewing: false,
+      animatedNotifications: new InverseIndexedArray<AnimatedNotification>(
+        this.props.capacity + 1
+      )
+    }
+  }
+
   componentWillUnmount() {
     this.cancelTimers()
   }
 
-  getInitialState(): IState {
-    const capacity = this.props.capacity + 1
-
-    return {
-      isOverviewing: false,
-      notifications: new InverseIndexedArray<IndexableNotification>(capacity)
-    }
-  }
-
   domino = () => {
-    if (!this.state.notifications.length) {
+    if (!this.state.animatedNotifications.length) {
       return
     }
 
@@ -63,11 +63,11 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
 
   popNotification = () => {
     const updateState = (prevState: IState) => {
-      const { notifications } = prevState
+      const { animatedNotifications } = prevState
 
-      notifications.shift()
+      animatedNotifications.shift()
 
-      return { notifications }
+      return { animatedNotifications }
     }
 
     this.setState(updateState)
@@ -77,17 +77,15 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
     this.setupTimers()
 
     const updateState = (prevState: IState) => {
-      const { notifications } = prevState
+      const { animatedNotifications } = prevState
 
-      const indexableNotification: IndexableNotification = {
+      animatedNotifications.push({
         ...notification,
         index: 0,
         key: this.generateNextKey()
-      }
+      })
 
-      notifications.push(indexableNotification)
-
-      return { notifications }
+      return { animatedNotifications }
     }
 
     this.setState(updateState)
@@ -117,7 +115,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
         <AnimatedContainer
           capacity={this.props.capacity}
           isOverviewing={this.state.isOverviewing}
-          notifications={this.state.notifications}
+          notifications={this.state.animatedNotifications}
           onOverviewToogle={this.onOverviewToogle}
         />
       </Container>

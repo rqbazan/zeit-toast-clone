@@ -5,11 +5,14 @@ export type Toast = {
 }
 
 export type Indexable = {
-  key: string
   index: number
 }
 
-export type IndexableNotification = INotification & Indexable
+export type Searchable = {
+  key: string
+}
+
+export type AnimatedNotification = INotification & Indexable & Searchable
 
 export interface INotification {
   message: string

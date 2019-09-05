@@ -2,18 +2,18 @@ import React from 'react'
 import { useTransition, UseTransitionResult } from 'react-spring'
 import { NotificationContainer } from './elements'
 import Notification from '../notification'
-import { IndexableNotification } from '../types'
+import { AnimatedNotification } from '../types'
 import vars from '../vars'
 
 export interface IAnimatedContainerProps {
-  notifications: IndexableNotification[]
+  notifications: AnimatedNotification[]
   capacity: number
   isOverviewing: boolean
   onOverviewToogle(isOverviewing: boolean): void
 }
 
 export type NotificationTransition = UseTransitionResult<
-  IndexableNotification,
+  AnimatedNotification,
   React.CSSProperties
 >
 
@@ -48,7 +48,7 @@ const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
     onOverviewToogle
   } = props
 
-  const updateTransition = (item: IndexableNotification) => {
+  const updateTransition = (item: AnimatedNotification) => {
     const transforms = isOverviewing
       ? getOverviewTransforms(item.index)
       : getUpdateTransforms(item.index)
