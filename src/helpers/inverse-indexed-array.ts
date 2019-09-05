@@ -1,6 +1,6 @@
-import { IIndexable } from '../types'
+import { Indexable } from '../types'
 
-class IndexedArray<Item extends IIndexable> extends Array<Item> {
+class InverseIndexedArray<Item extends Indexable> extends Array<Item> {
   private capacity: number
 
   constructor(capacity: number) {
@@ -21,4 +21,4 @@ class IndexedArray<Item extends IIndexable> extends Array<Item> {
   }
 }
 
-export default IndexedArray
+export default InverseIndexedArray

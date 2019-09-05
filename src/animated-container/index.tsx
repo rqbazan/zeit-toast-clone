@@ -1,10 +1,21 @@
-import * as React from 'react'
-import { useTransition } from 'react-spring'
+import React from 'react'
+import { useTransition, UseTransitionResult } from 'react-spring'
+import { NotificationContainer } from './elements'
 import Notification from '../notification'
-import { IdxNotification } from '../types'
+import { IndexableNotification } from '../types'
 import vars from '../vars'
-import { IProps, Transition } from './types'
-import { Container } from './elements'
+
+export interface IAnimatedContainerProps {
+  notifications: IndexableNotification[]
+  capacity: number
+  isOverviewing: boolean
+  onOverviewToogle(isOverviewing: boolean): void
+}
+
+export type NotificationTransition = UseTransitionResult<
+  IndexableNotification,
+  React.CSSProperties
+>
 
 const getUpdateTransforms = (index: number) => {
   const scaleFactor = vars.scaleStep * index
@@ -25,14 +36,19 @@ const getOverviewTransforms = (index: number) => {
   }
 }
 
-const comparator = (a: Transition, b: Transition) => {
+const comparator = (a: NotificationTransition, b: NotificationTransition) => {
   return b.item.index - a.item.index
 }
 
-const AnimatedContainer: React.FC<IProps> = props => {
-  const { notifications: items, capacity, isOverviewing, onToogle } = props
+const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
+  const {
+    notifications: items,
+    capacity,
+    isOverviewing,
+    onOverviewToogle
+  } = props
 
-  const update = (item: IdxNotification) => {
+  const updateTransition = (item: IndexableNotification) => {
     const transforms = isOverviewing
       ? getOverviewTransforms(item.index)
       : getUpdateTransforms(item.index)
@@ -43,26 +59,34 @@ const AnimatedContainer: React.FC<IProps> = props => {
     }
   }
 
+  const hiddenBottomPosition = vars.height + vars.position.bottom
+
   const transitions = useTransition(items, item => item.key, {
-    update,
-    onDestroyed: () => onToogle(false),
-    from: { transform: 'translate(0, 80px) scale(1)', opacity: 0 },
-    enter: { transform: 'translate(0, -64px) scale(1)', opacity: 1 },
+    update: updateTransition,
+    onDestroyed: () => onOverviewToogle(false),
+    from: {
+      transform: `translate(0, ${hiddenBottomPosition}px) scale(1)`,
+      opacity: 0
+    },
+    enter: {
+      transform: `translate(0, -${vars.height}px) scale(1)`,
+      opacity: 1
+    },
     leave: { opacity: 0 }
   })
 
-  const renderTransition = (transition: Transition) => {
+  const renderTransition = (transition: NotificationTransition) => {
     const { key, props: style, item: notification } = transition
 
     return (
-      <Container
+      <NotificationContainer
         key={key}
         style={style}
-        onMouseEnter={() => onToogle(true)}
-        onMouseLeave={() => onToogle(false)}
+        onMouseEnter={() => onOverviewToogle(true)}
+        onMouseLeave={() => onOverviewToogle(false)}
       >
         <Notification {...notification} />
-      </Container>
+      </NotificationContainer>
     )
   }
 

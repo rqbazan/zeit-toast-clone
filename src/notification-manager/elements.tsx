@@ -1,15 +1,17 @@
 import styled from 'styled-components'
-import { ContainerProps } from './types'
+import { IMountOptions } from '../types'
 import vars from '../vars'
+
+export type ContainerProps = Pick<IMountOptions, 'zIndex'>
 
 const getZIndex = (props: ContainerProps) => {
   return props.zIndex || vars.zIndex
 }
 
 export const Container = styled.div<ContainerProps>`
-  bottom: 16px;
+  bottom: ${vars.position.bottom}px;
   position: fixed;
-  right: 16px;
+  right: ${vars.position.right}px;
   width: 328px;
   z-index: ${getZIndex};
 `

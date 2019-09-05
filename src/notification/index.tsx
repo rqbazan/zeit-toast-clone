@@ -1,8 +1,15 @@
-import * as React from 'react'
+import React from 'react'
 import { Container } from './elements'
-import { IProps } from './types'
+import { MessageKind } from '../types'
 
-const Notification: React.FC<IProps> = props => {
+export interface INotificationProps {
+  kind: MessageKind
+  message: string
+  className?: string
+  style?: React.CSSProperties
+}
+
+const Notification: React.FC<INotificationProps> = props => {
   const { style, className, message, kind } = props
 
   return (

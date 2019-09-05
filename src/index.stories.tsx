@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { text, select, number } from '@storybook/addon-knobs'
 import { INotification, IMountOptions } from './types'
 import notifier from './index'
@@ -10,7 +10,7 @@ export default { title: 'notifier' }
  * by HRM in development mode
  */
 const useNotifier = (options: IMountOptions) => {
-  const dependencies = Object.keys(options).map(
+  const optionValues = Object.keys(options).map(
     (key: keyof IMountOptions) => options[key]
   )
 
@@ -20,15 +20,15 @@ const useNotifier = (options: IMountOptions) => {
     return () => {
       notifier.unmount()
     }
-  }, dependencies)
+  }, optionValues)
 }
 
-type Props = {
+interface IDemoAppProps {
   notification: INotification
   options: IMountOptions
 }
 
-const DemoApp: React.FC<Props> = props => {
+const DemoApp: React.FC<IDemoAppProps> = props => {
   const { notification, options } = props
 
   useNotifier(options)

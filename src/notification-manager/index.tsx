@@ -1,12 +1,16 @@
-import * as React from 'react'
-import AnimatedContainer from '../animated-container'
-import IndexedArray from '../indexed-array'
-import Timer from '../timer'
-import { INotification, IdxNotification } from '../types'
+import React from 'react'
 import { Container } from './elements'
-import { IState, IProps } from './types'
+import AnimatedContainer from '../animated-container'
+import InverseIndexedArray from '../helpers/inverse-indexed-array'
+import Timer from '../helpers/timer'
+import { INotification, IndexableNotification, IMountOptions } from '../types'
 
-class NotificationManager extends React.Component<IProps, IState> {
+export interface IState {
+  isOverviewing: boolean
+  notifications: InverseIndexedArray<IndexableNotification>
+}
+
+class NotificationManager extends React.Component<IMountOptions, IState> {
   countNotifications = 0
 
   cleanUpTimer = new Timer()
@@ -20,11 +24,11 @@ class NotificationManager extends React.Component<IProps, IState> {
   }
 
   getInitialState(): IState {
-    const { capacity } = this.props
+    const capacity = this.props.capacity + 1
 
     return {
       isOverviewing: false,
-      notifications: new IndexedArray<IdxNotification>(capacity + 1)
+      notifications: new InverseIndexedArray<IndexableNotification>(capacity)
     }
   }
 
@@ -75,7 +79,7 @@ class NotificationManager extends React.Component<IProps, IState> {
     const updateState = (prevState: IState) => {
       const { notifications } = prevState
 
-      const indexableNotification: IdxNotification = {
+      const indexableNotification: IndexableNotification = {
         ...notification,
         index: 0,
         key: this.generateNextKey()
@@ -89,22 +93,21 @@ class NotificationManager extends React.Component<IProps, IState> {
     this.setState(updateState)
   }
 
-  turnOverviewOn = () => {
+  turnOverviewingOn = () => {
+    this.cancelTimers()
     this.setState({ isOverviewing: true })
-    this.setupTimers()
-    this.cleanUpTimer.pause()
   }
 
-  turnOverviewOff = () => {
+  turnOverviewingOff = () => {
     this.setupTimers()
     this.setState({ isOverviewing: false })
   }
 
-  onAnimatedToogle = (isOverviewing: boolean) => {
+  onOverviewToogle = (isOverviewing: boolean) => {
     if (isOverviewing) {
-      this.turnOverviewOn()
+      this.turnOverviewingOn()
     } else {
-      this.turnOverviewOff()
+      this.turnOverviewingOff()
     }
   }
 
@@ -115,7 +118,7 @@ class NotificationManager extends React.Component<IProps, IState> {
           capacity={this.props.capacity}
           isOverviewing={this.state.isOverviewing}
           notifications={this.state.notifications}
-          onToogle={this.onAnimatedToogle}
+          onOverviewToogle={this.onOverviewToogle}
         />
       </Container>
     )

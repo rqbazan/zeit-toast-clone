@@ -1,16 +1,16 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import NotificationManager from './notification-manager'
 import { INotifier, INotification, IMountOptions } from './types'
 
 export class ZeitToast implements INotifier {
-  private rootRef: React.RefObject<NotificationManager>
+  private managerRef: React.RefObject<NotificationManager>
 
   private containerEl: HTMLDivElement
 
   private notify(notification: INotification) {
-    if (this.rootRef.current) {
-      this.rootRef.current.showNotification(notification)
+    if (this.managerRef.current) {
+      this.managerRef.current.showNotification(notification)
     }
   }
 
@@ -25,10 +25,10 @@ export class ZeitToast implements INotifier {
 
     document.body.appendChild(this.containerEl)
 
-    this.rootRef = React.createRef<NotificationManager>()
+    this.managerRef = React.createRef<NotificationManager>()
 
     ReactDOM.render(
-      <NotificationManager {...options} ref={this.rootRef} />,
+      <NotificationManager {...options} ref={this.managerRef} />,
       this.containerEl
     )
   }

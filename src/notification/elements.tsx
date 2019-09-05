@@ -1,6 +1,14 @@
 import styled from 'styled-components'
-import { IContainerProps, BgColors } from './types'
+import { MessageKind } from '../types'
 import vars from '../vars'
+
+export interface IContainerProps {
+  kind: MessageKind
+}
+
+export type BgColors = {
+  [key in MessageKind]: string
+}
 
 const bgColors: BgColors = {
   success: '#94ffd8',
