@@ -1,13 +1,64 @@
 {
   "name": "zeit-toast-clone",
   "version": "0.0.0-semantically-released",
-  "main": "index.js",
-  "author": "Ricardo Alexis Quiroz Bazan <raquirozbazan@gmail.com>",
+  "private": false,
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rqbazan/zeit-toast-clone.git"
+  },
   "license": "MIT",
+  "keywords": [
+    "toast",
+    "animated",
+    "zeit",
+    "react"
+  ],
+  "files": [
+    "lib"
+  ],
+  "author": {
+    "name": "Ricardo Alexis Quiroz Bazan",
+    "email": "raquirozbazan@gmail.com",
+    "url": "http://github.com/rqbazan"
+  },
   "scripts": {
+    "clear": "rm -rf lib",
+    "build": "yarn clear && rollup -c && tsc --emitDeclarationOnly",
     "dev": "start-storybook -p 6006",
     "storybook": "build-storybook",
     "lint": "eslint --ext ts,js,tsx ."
+  },
+  "eslintIgnore": [
+    "lib"
+  ],
+  "eslintConfig": {
+    "extends": "rqbazan-ts/react",
+    "rules": {
+      "@typescript-eslint/interface-name-prefix": "off",
+      "react/destructuring-assignment": "off",
+      "no-plusplus": "off",
+      "react/state-in-constructor": "off",
+      "import/prefer-default-export": "off",
+      "react/jsx-props-no-spreading": "off",
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/*.stories.tsx",
+            "*.config.js"
+          ]
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-spring": "^8.0.0",
+    "styled-components": "^4.3.2 || ^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -25,13 +76,10 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-spring": "^8.0.27",
+    "rollup": "^1.20.3",
+    "rollup-plugin-typescript": "^1.0.1",
     "styled-components": "^5.0.0-beta.8",
+    "tslib": "^1.10.0",
     "typescript": "3.5.3"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "react-spring": "^8.0.0",
-    "styled-components": "^4.3.2 || ^5.0.0"
   }
 }

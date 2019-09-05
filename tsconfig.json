@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "lib",
     "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom"],
@@ -12,6 +12,9 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "skipLibCheck": true
+  },
+  "files": ["src/index.tsx"]
 }
