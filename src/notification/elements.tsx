@@ -26,6 +26,7 @@ export const Container = styled.div<IContainerProps>`
   background-color: ${getBgColor};
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 10px 0px;
+  color: black;
   display: flex;
   font-family: 'Open Sans', sans-serif;
   height: ${vars.height}px;
