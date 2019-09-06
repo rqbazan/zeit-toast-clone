@@ -25,10 +25,10 @@
     "url": "http://github.com/rqbazan"
   },
   "scripts": {
-    "clear": "rm -rf lib",
-    "build": "yarn clear && rollup -c && tsc --emitDeclarationOnly",
+    "build:js": "rollup -c",
+    "build:dts": "node ./dts-generator.js",
+    "build": "yarn build:js && yarn build:dts",
     "dev": "start-storybook -p 6006",
-    "storybook": "build-storybook",
     "lint": "eslint --ext ts,js,tsx ."
   },
   "eslintIgnore": [
@@ -48,7 +48,8 @@
         {
           "devDependencies": [
             "**/*.stories.tsx",
-            "*.config.js"
+            "*.config.js",
+            "dts-generator.js"
           ]
         }
       ]
@@ -70,6 +71,7 @@
     "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.1.18",
     "babel-loader": "^8.0.6",
+    "dts-generator": "^3.0.0",
     "eslint": "^6.3.0",
     "eslint-config-rqbazan-ts": "^0.1.4",
     "prettier": "^1.18.2",
