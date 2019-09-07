@@ -4,6 +4,12 @@ import NotificationManager from './notification-manager'
 import { INotifier, INotification, IMountOptions } from './types'
 
 export class ZeitToast implements INotifier {
+  static defaultOptions: IMountOptions = {
+    timeout: 3 * 1000,
+    interval: 3 * 100,
+    capacity: 3
+  }
+
   private managerRef: React.RefObject<NotificationManager>
 
   private containerEl: HTMLDivElement
@@ -20,7 +26,7 @@ export class ZeitToast implements INotifier {
     }
   }
 
-  mount(options: IMountOptions) {
+  mount(options: IMountOptions = ZeitToast.defaultOptions) {
     this.containerEl = document.createElement('div')
 
     document.body.appendChild(this.containerEl)

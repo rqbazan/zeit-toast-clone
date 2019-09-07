@@ -47,9 +47,18 @@
         "error",
         {
           "devDependencies": [
-            "**/*.stories.tsx",
+            "**/*.stories.js",
             "*.config.js",
             "dts-generator.js"
+          ]
+        }
+      ],
+      "react/jsx-filename-extension": [
+        "error",
+        {
+          "extensions": [
+            ".js",
+            ".tsx"
           ]
         }
       ]
@@ -63,12 +72,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@storybook/addon-knobs": "^5.2.0-beta.25",
-    "@storybook/react": "^5.2.0-beta.25",
-    "@storybook/theming": "^5.2.0-beta.25",
+    "@storybook/addon-knobs": "^5.2.0-rc.8",
+    "@storybook/addon-storysource": "^5.2.0-rc.8",
+    "@storybook/react": "^5.2.0-rc.8",
+    "@storybook/theming": "^5.2.0-rc.8",
     "@types/react": "^16.8.25",
     "@types/react-dom": "^16.8.5",
-    "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.1.18",
     "babel-loader": "^8.0.6",
     "dts-generator": "^3.0.0",
