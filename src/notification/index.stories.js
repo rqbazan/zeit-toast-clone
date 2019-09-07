@@ -4,7 +4,7 @@ import Notification from './index'
 
 export default { title: 'Notification' }
 
-export const Payground = () => {
+export const Playground = () => {
   const message = text('message', 'Hello World!', 'notification')
 
   const kind = select(
