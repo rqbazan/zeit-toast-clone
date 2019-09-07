@@ -27,7 +27,8 @@
   "scripts": {
     "build:js": "rollup -c",
     "build:dts": "node ./dts-generator.js",
-    "build": "yarn build:js && yarn build:dts",
+    "prepublishOnly": "yarn build:js && yarn build:dts",
+    "build": "build-storybook -o public",
     "dev": "start-storybook -p 6006",
     "lint": "eslint --ext ts,js,tsx ."
   },
