@@ -2,8 +2,6 @@ import { configure, addDecorator, addParameters } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 import { create as createTheme } from '@storybook/theming'
 
-configure(require.context('../src/', true, /\.stories\.js$/), module)
-
 addParameters({
   options: {
     theme: createTheme({
@@ -15,9 +13,10 @@ addParameters({
       colorPrimary: '#b0b0b0',
       colorSecondary: '#6200ff',
       inputBg: '#e3e3e3'
-    }),
-    panelPosition: 'right'
+    })
   }
 })
 
 addDecorator(withKnobs)
+
+configure(require.context('../src/', true, /\.stories\.js$/), module)
