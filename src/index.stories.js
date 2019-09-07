@@ -20,7 +20,7 @@ const useNotifier = (options = ZeitToast.defaultOptions) => {
 }
 
 export const Playground = () => {
-  const message = text('message', 'Hello World!', 'notification')
+  const message = text('message', 'Hello world!', 'notification')
 
   const kind = select(
     'kind',

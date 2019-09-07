@@ -5,7 +5,7 @@ import Notification from './index'
 export default { title: 'Notification' }
 
 export const Playground = () => {
-  const message = text('message', 'Hello World!', 'notification')
+  const message = text('message', 'Hello world!', 'notification')
 
   const kind = select(
     'kind',
@@ -18,7 +18,7 @@ export const Playground = () => {
 }
 
 export const Success = () => {
-  return <Notification message="Hello World!" kind="success" />
+  return <Notification message="Hello world!" kind="success" />
 }
 
 export const Error = () => {
