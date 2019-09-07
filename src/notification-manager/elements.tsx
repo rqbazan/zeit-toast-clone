@@ -10,8 +10,14 @@ const getZIndex = (props: ContainerProps) => {
 
 export const Container = styled.div<ContainerProps>`
   bottom: ${vars.position.bottom}px;
+  left: ${vars.position.right}px;
   position: fixed;
   right: ${vars.position.right}px;
-  width: 328px;
   z-index: ${getZIndex};
+
+  @media (min-width: 46em) {
+    left: unset;
+    right: ${vars.position.right}px;
+    width: ${vars.width}px;
+  }
 `

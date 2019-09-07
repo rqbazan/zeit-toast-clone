@@ -1,6 +1,8 @@
+import React from 'react'
 import { configure, addDecorator, addParameters } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 import { create as createTheme } from '@storybook/theming'
+import { Container } from './components'
 
 addParameters({
   options: {
@@ -18,5 +20,7 @@ addParameters({
 })
 
 addDecorator(withKnobs)
+
+addDecorator(story => <Container>{story()}</Container>)
 
 configure(require.context('../src/', true, /\.stories\.js$/), module)

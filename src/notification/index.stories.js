@@ -10,7 +10,7 @@ export const Payground = () => {
   const kind = select(
     'kind',
     ['info', 'error', 'success', 'warning'],
-    'info',
+    'success',
     'notification'
   )
 

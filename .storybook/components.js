@@ -22,12 +22,25 @@ export const Emoji = ({ ariaLabel, render }) => (
 
 export const ButtonGroup = styled.div`
   display: flex;
+  flex-direction: column;
 
   > button {
     flex-grow: 1;
+  }
 
-    :not(:last-child) {
+  > button:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  @media (min-width: 46em) {
+    flex-direction: row;
+
+    > button:not(:last-child) {
       margin-right: 16px;
     }
   }
+`
+
+export const Container = styled.div`
+  padding: 24px;
 `

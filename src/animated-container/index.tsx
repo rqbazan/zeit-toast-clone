@@ -40,6 +40,18 @@ const comparator = (a: NotificationTransition, b: NotificationTransition) => {
   return b.item.index - a.item.index
 }
 
+const useClickOutside = (listener: EventListener) => {
+  const callback = React.useCallback(listener, [])
+
+  React.useEffect(() => {
+    document.addEventListener('click', callback)
+
+    return () => {
+      document.removeEventListener('click', callback)
+    }
+  }, [])
+}
+
 const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
   const {
     notifications: items,
@@ -47,6 +59,8 @@ const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
     isOverviewing,
     onOverviewToogle
   } = props
+
+  useClickOutside(() => onOverviewToogle(false))
 
   const updateTransition = (item: AnimatedNotification) => {
     const transforms = isOverviewing
@@ -84,6 +98,11 @@ const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
         style={style}
         onMouseEnter={() => onOverviewToogle(true)}
         onMouseLeave={() => onOverviewToogle(false)}
+        onClick={(e: React.SyntheticEvent) => {
+          e.stopPropagation()
+          e.nativeEvent.stopImmediatePropagation()
+          onOverviewToogle(true)
+        }}
       >
         <Notification {...notification} />
       </NotificationContainer>
