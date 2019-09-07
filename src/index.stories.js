@@ -1,5 +1,6 @@
 import React from 'react'
 import { text, select, number } from '@storybook/addon-knobs'
+import { Button, Emoji, ButtonGroup } from '#storybook/components'
 import notifier, { ZeitToast } from './index'
 
 export default { title: 'notifier' }
@@ -24,7 +25,7 @@ export const Playground = () => {
   const kind = select(
     'kind',
     ['info', 'error', 'success', 'warning'],
-    'info',
+    'success',
     'notification'
   )
 
@@ -55,33 +56,31 @@ export const Playground = () => {
     capacity
   })
 
-  return (
-    <button type="button" onClick={() => notifier[kind](message)}>
-      Show Notification
-    </button>
-  )
+  const show = () => {
+    notifier[kind](message)
+  }
+
+  return <Button onClick={show}>Show Notification</Button>
 }
 
 export const AllInOne = () => {
   useNotifier()
 
   return (
-    <>
-      <button type="button" onClick={() => notifier.success('Hello world!')}>
-        Show Success
-      </button>
-      <button type="button" onClick={() => notifier.error('Invalid value')}>
-        Show Error
-      </button>
-      <button type="button" onClick={() => notifier.info('Winter is comming')}>
-        Show Info
-      </button>
-      <button
-        type="button"
-        onClick={() => notifier.warning('Mismatch information')}
-      >
-        Show Warning
-      </button>
-    </>
+    <ButtonGroup>
+      <Button onClick={() => notifier.success('Hello world!')}>
+        Show Success <Emoji ariaLabel="success" render="🎉" />
+      </Button>
+      <Button onClick={() => notifier.error('Invalid value')}>
+        Show Error <Emoji ariaLabel="error" render="❌" />
+      </Button>
+      <Button onClick={() => notifier.info('Winter is comming')}>
+        Show Info <Emoji ariaLabel="information" render="ℹ️" />
+      </Button>
+      <Button onClick={() => notifier.warning('Mismatch information')}>
+        Show Warning ️️
+        <Emoji ariaLabel="warning" render="⚠️" />
+      </Button>
+    </ButtonGroup>
   )
 }

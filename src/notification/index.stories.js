@@ -6,6 +6,7 @@ export default { title: 'Notification' }
 
 export const Payground = () => {
   const message = text('message', 'Hello World!', 'notification')
+
   const kind = select(
     'kind',
     ['info', 'error', 'success', 'warning'],
