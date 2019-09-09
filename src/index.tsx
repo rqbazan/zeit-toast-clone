@@ -59,6 +59,11 @@ export class ZeitToast implements INotifier {
 const notifier = new ZeitToast()
 
 export const NotifierPortal = React.memo((props: IMountOptions) => {
+  // For SSR support ¯\_(ツ)_/¯
+  if (typeof window === 'undefined') {
+    return null
+  }
+
   return notifier.portal({ ...ZeitToast.defaultOptions, ...props })
 })
 
