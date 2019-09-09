@@ -9,8 +9,13 @@ const DARK_MODE_ADDON_CHANNEL = 'DARK_MODE'
 const channel = addons.getChannel()
 
 const initIsDark = () => {
-  const data = JSON.parse(localStorage[DARK_MODE_ADDON_STORAGE_KEY])
-  return data.current === 'dark'
+  const stored = localStorage[DARK_MODE_ADDON_STORAGE_KEY]
+
+  if (!stored) {
+    return false
+  }
+
+  return JSON.parse(stored).current === 'dark'
 }
 
 const App = ({ children }) => {
