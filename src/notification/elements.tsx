@@ -3,6 +3,7 @@ import { MessageKind } from '../types'
 import vars from '../vars'
 
 export interface IContainerProps {
+  darkMode?: boolean
   kind: MessageKind
 }
 
@@ -10,15 +11,50 @@ export type BgColors = {
   [key in MessageKind]: string
 }
 
-const bgColors: BgColors = {
+const bgLightColors: BgColors = {
   success: '#94ffd8',
   error: '#ff4a2e',
-  info: '#ffffff',
+  info: '#fff',
   warning: '#ffea2e'
 }
 
-const getBgColor = (props: IContainerProps) => {
-  return bgColors[props.kind || 'info']
+const bgDarkColors: BgColors = {
+  ...bgLightColors,
+  info: '#000'
+}
+
+const isDarkInfo = (props: IContainerProps): boolean => {
+  return !!props.darkMode && props.kind === 'info'
+}
+
+const getBgColor = (props: IContainerProps): string => {
+  const { darkMode, kind } = props
+
+  if (darkMode) {
+    return bgDarkColors[kind]
+  }
+
+  return bgLightColors[kind]
+}
+
+const getBorder = (props: IContainerProps): string | null => {
+  if (!props.darkMode) {
+    return null
+  }
+
+  if (isDarkInfo(props)) {
+    return 'border: 1px solid #858585;'
+  }
+
+  return 'border: 1px solid #000;'
+}
+
+const getColor = (props: IContainerProps): string => {
+  if (isDarkInfo(props)) {
+    return '#fff'
+  }
+
+  return '#000'
 }
 
 export const Container = styled.div<IContainerProps>`
@@ -26,9 +62,10 @@ export const Container = styled.div<IContainerProps>`
   background-color: ${getBgColor};
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 10px 0px;
-  color: black;
+  color: ${getColor};
   display: flex;
   font-family: 'Open Sans', sans-serif;
   height: ${vars.height}px;
   padding: 0 24px;
+  ${getBorder}
 `

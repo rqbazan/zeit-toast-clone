@@ -20,20 +20,20 @@ export class ZeitToast implements INotifier {
     }
   }
 
-  unmount() {
+  init() {
     if (this.containerEl) {
-      ReactDOM.unmountComponentAtNode(this.containerEl)
+      return
     }
+
+    this.containerEl = document.createElement('div')
+    document.body.appendChild(this.containerEl)
+    this.managerRef = React.createRef<NotificationManager>()
   }
 
-  mount(options: IMountOptions = ZeitToast.defaultOptions) {
-    this.containerEl = document.createElement('div')
+  portal(options: IMountOptions = ZeitToast.defaultOptions) {
+    this.init()
 
-    document.body.appendChild(this.containerEl)
-
-    this.managerRef = React.createRef<NotificationManager>()
-
-    ReactDOM.render(
+    return ReactDOM.createPortal(
       <NotificationManager {...options} ref={this.managerRef} />,
       this.containerEl
     )
@@ -56,4 +56,10 @@ export class ZeitToast implements INotifier {
   }
 }
 
-export default new ZeitToast()
+const notifier = new ZeitToast()
+
+export const NotifierPortal = React.memo((props: IMountOptions) => {
+  return notifier.portal({ ...ZeitToast.defaultOptions, ...props })
+})
+
+export default notifier

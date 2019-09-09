@@ -27,6 +27,5 @@ export interface IMountOptions {
 }
 
 export interface INotifier extends Toast {
-  mount(options: IMountOptions): void
-  unmount(): void
+  portal(options: IMountOptions): React.ReactPortal
 }

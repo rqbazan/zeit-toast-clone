@@ -5,13 +5,12 @@ import Notification from './index'
 export default { title: 'Notification' }
 
 export const Playground = () => {
-  const message = text('message', 'Hello world!', 'notification')
+  const message = text('message', 'Hello world!')
 
   const kind = select(
     'kind',
     ['info', 'error', 'success', 'warning'],
-    'success',
-    'notification'
+    'success'
   )
 
   return <Notification message={message} kind={kind} />
