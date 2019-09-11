@@ -29,5 +29,5 @@ export const Warning = () => {
 }
 
 export const Info = () => {
-  return <Notification message="Winter is comming" kind="info" />
+  return <Notification message="Winter is coming" kind="info" />
 }

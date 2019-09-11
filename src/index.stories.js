@@ -58,7 +58,7 @@ export const AllInOne = () => {
         <Button onClick={() => notifier.error('Invalid value')}>
           Show Error <Emoji ariaLabel="error" render="❌" />
         </Button>
-        <Button onClick={() => notifier.info('Winter is comming')}>
+        <Button onClick={() => notifier.info('Winter is coming')}>
           Show Info <Emoji ariaLabel="information" render="ℹ️" />
         </Button>
         <Button onClick={() => notifier.warning('Mismatch information')}>
