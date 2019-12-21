@@ -6,26 +6,36 @@ import { Indexable } from '../types'
  *
  * [{ index: n - 1 }, { index: n - 2 }, ..., { index: 0 }]
  */
-class InverseIndexedArray<Item extends Indexable> extends Array<Item> {
+class InverseIndexedQueue<Item extends Indexable> {
   private capacity: number
 
+  readonly items: Item[]
+
   constructor(capacity: number) {
-    super()
     this.capacity = capacity
+    this.items = []
   }
 
-  push(newItem: Item) {
-    if (this.length + 1 > this.capacity) {
-      this.shift()
+  get length() {
+    return this.items.length
+  }
+
+  add(newItem: Item) {
+    if (this.items.length + 1 > this.capacity) {
+      this.items.shift()
     }
 
-    this.forEach(item => {
+    this.items.forEach(item => {
       // eslint-disable-next-line no-param-reassign
       item.index += 1
     })
 
-    return super.push(newItem)
+    this.items.push(newItem)
+  }
+
+  pop() {
+    this.items.shift()
   }
 }
 
-export default InverseIndexedArray
+export default InverseIndexedQueue
