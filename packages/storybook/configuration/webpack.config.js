@@ -1,5 +1,3 @@
-const path = require('path')
-
 module.exports = ({ config }) => {
   config.module.rules.push({
     test: /\.tsx?$/,
@@ -21,7 +19,6 @@ module.exports = ({ config }) => {
     enforce: 'pre'
   })
 
-  config.resolve.alias['#storybook'] = __dirname
   config.resolve.extensions.push('.ts', '.tsx')
 
   return config

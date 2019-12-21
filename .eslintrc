@@ -2,21 +2,6 @@
   "extends": "rqbazan-ts/react",
   "rules": {
     "import/extensions": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "**/*.stories.js",
-          "*.config.js",
-          "dts-generator.js"
-        ]
-      }
-    ],
-    "import/no-unresolved": [
-      "error",
-      {
-        "ignore": ["^#storybook"]
-      }
-    ]
+    "import/no-extraneous-dependencies": "off"
   }
 }

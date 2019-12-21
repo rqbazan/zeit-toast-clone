@@ -1,13 +1,13 @@
 import React from 'react'
 import { Container } from './elements'
 import AnimatedContainer from '../animated-container'
-import InverseIndexedArray from '../helpers/inverse-indexed-array'
+import InverseIndexedQueue from '../helpers/inverse-indexed-queue'
 import Timer from '../helpers/timer'
 import { INotification, AnimatedNotification, IMountOptions } from '../types'
 
 export interface IState {
   isOverviewing: boolean
-  animatedNotifications: InverseIndexedArray<AnimatedNotification>
+  animatedNotifications: InverseIndexedQueue<AnimatedNotification>
 }
 
 class NotificationManager extends React.Component<IMountOptions, IState> {
@@ -22,7 +22,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
   getInitialState(): IState {
     return {
       isOverviewing: false,
-      animatedNotifications: new InverseIndexedArray<AnimatedNotification>(
+      animatedNotifications: new InverseIndexedQueue<AnimatedNotification>(
         this.props.capacity + 1
       )
     }
@@ -65,7 +65,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
     const updateState = (prevState: IState) => {
       const { animatedNotifications } = prevState
 
-      animatedNotifications.shift()
+      animatedNotifications.pop()
 
       return { animatedNotifications }
     }
@@ -79,7 +79,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
     const updateState = (prevState: IState) => {
       const { animatedNotifications } = prevState
 
-      animatedNotifications.push({
+      animatedNotifications.add({
         ...notification,
         index: 0,
         key: this.generateNextKey()
@@ -115,7 +115,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
         <AnimatedContainer
           capacity={this.props.capacity}
           isOverviewing={this.state.isOverviewing}
-          notifications={this.state.animatedNotifications}
+          notifications={this.state.animatedNotifications.items}
           onOverviewToogle={this.onOverviewToogle}
         />
       </Container>

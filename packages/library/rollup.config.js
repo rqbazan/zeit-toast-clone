@@ -1,5 +1,5 @@
 import dts from 'rollup-plugin-dts'
-import typescript from 'rollup-plugin-typescript'
+import typescript from '@rollup/plugin-typescript'
 import pkg from './package.json'
 
 export default [
@@ -27,8 +27,9 @@ export default [
     plugins: [dts()],
     output: [
       {
+        format: 'es',
         file: pkg.types,
-        format: 'es'
+        name: pkg.name
       }
     ]
   }

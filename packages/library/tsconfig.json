@@ -8,13 +8,12 @@
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "src",
+    "esModuleInterop": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "skipLibCheck": true
-  },
-  "files": ["src/index.tsx"]
+  }
 }

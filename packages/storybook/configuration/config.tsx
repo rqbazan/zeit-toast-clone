@@ -8,6 +8,6 @@ addParameters({ darkMode: themes })
 
 addDecorator(withKnobs)
 
-addDecorator(story => <App>{story({ a: 1 })}</App>)
+addDecorator(story => <App>{story()}</App>)
 
-configure(require.context('../src/', true, /\.stories\.js$/), module)
+configure(require.context('../src/', true, /\.stories\.tsx$/), module)
