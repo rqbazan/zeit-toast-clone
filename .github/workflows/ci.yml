@@ -16,6 +16,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Build packages
+        run: yarn build
+
       - name: Static testing
         run: yarn validate
 

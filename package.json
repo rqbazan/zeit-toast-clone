@@ -1,6 +1,9 @@
 {
   "name": "zeit-toast-clone-monorepo",
   "private": true,
+  "engines": {
+    "node": "12.x"
+  },
   "license": "MIT",
   "workspaces": [
     "packages/*"
@@ -14,7 +17,7 @@
     "prettier": "prettier --ignore-path .gitignore \"**/*.{ts,tsx,js,json,md}\"",
     "format": "yarn prettier --write",
     "check-format": "yarn prettier --list-different",
-    "validate": "npm-run-all --parallel check-format check-types lint build"
+    "validate": "npm-run-all --parallel check-format check-types lint"
   },
   "husky": {
     "hooks": {

@@ -2,6 +2,9 @@
   "name": "zeit-toast-clone-storybook",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "12.x"
+  },
   "license": "MIT",
   "scripts": {
     "build": "build-storybook -c configuration -o public",
@@ -14,6 +17,6 @@
     "@storybook/react": "^5.2.8",
     "@storybook/theming": "^5.2.8",
     "storybook-dark-mode": "0.2.0",
-    "zeit-toast-clone": "1.0.0"
+    "zeit-toast-clone": "0.0.0"
   }
 }
