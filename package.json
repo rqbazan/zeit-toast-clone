@@ -25,9 +25,8 @@
     "url": "http://github.com/rqbazan"
   },
   "scripts": {
-    "build:js": "rollup -c",
-    "build:dts": "node ./dts-generator.js",
-    "prepublishOnly": "yarn build:js && yarn build:dts",
+    "build:lib": "rollup -c",
+    "prepublishOnly": "yarn build:lib",
     "build": "build-storybook -o public",
     "dev": "start-storybook -p 3000",
     "lint": "eslint --ignore-path .gitignore . --ext ts,tsx,js",
@@ -35,7 +34,7 @@
     "format": "yarn prettier --write",
     "check-format": "yarn prettier --list-different",
     "check-types": "tsc",
-    "validate": "npm-run-all --parallel check-format check-types lint build:js build:dts"
+    "validate": "npm-run-all --parallel check-format check-types lint build:lib"
   },
   "eslintIgnore": [
     "lib"
@@ -81,7 +80,6 @@
     "@types/styled-components": "^4.4.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-module-resolver": "^4.0.0",
-    "dts-generator": "^3.0.0",
     "eslint": "^6.8.0",
     "eslint-config-rqbazan-ts": "^0.3.1",
     "husky": "^3.1.0",
@@ -92,6 +90,7 @@
     "react-dom": "^16.12.0",
     "react-spring": "^8.0.27",
     "rollup": "^1.27.13",
+    "rollup-plugin-dts": "^1.1.13",
     "rollup-plugin-typescript": "^1.0.1",
     "storybook-dark-mode": "0.2.0",
     "styled-components": "^4.4.1",
