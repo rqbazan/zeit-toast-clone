@@ -1,5 +1,7 @@
 import React, { ReactPortal } from 'react'
 import ReactDOM from 'react-dom'
+import Notification from './notification'
+import { DarkModeContext } from './contexts'
 import NotificationManager from './notification-manager'
 import { INotifier, INotification, IMountOptions } from './types'
 
@@ -59,7 +61,7 @@ export class ZeitToast implements INotifier {
 const notifier = new ZeitToast()
 
 export const NotifierPortal = React.memo(
-  (props: IMountOptions): ReactPortal | null => {
+  (props: Partial<IMountOptions>): ReactPortal | null => {
     // For SSR support ¯\_(ツ)_/¯
     if (typeof window === 'undefined') {
       return null
@@ -68,5 +70,7 @@ export const NotifierPortal = React.memo(
     return notifier.portal({ ...ZeitToast.defaultOptions, ...props })
   }
 )
+
+export { Notification, DarkModeContext }
 
 export default notifier

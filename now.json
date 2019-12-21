@@ -1,0 +1,10 @@
+{
+  "name": "zeit-toast-clone",
+  "version": 2,
+  "builds": [
+    {
+      "src": "packages/storybook/package.json",
+      "use": "@now/static-build"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { text, select } from '@storybook/addon-knobs'
-import Notification from './index'
+import { Notification } from 'zeit-toast-clone'
 
 export default { title: 'Notification' }
 

@@ -27,8 +27,9 @@ export default [
     plugins: [dts()],
     output: [
       {
+        format: 'es',
         file: pkg.types,
-        format: 'es'
+        name: pkg.name
       }
     ]
   }

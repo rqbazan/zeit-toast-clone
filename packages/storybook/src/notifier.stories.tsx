@@ -1,7 +1,7 @@
 import React from 'react'
 import { text, select, number } from '@storybook/addon-knobs'
-import { Button, Emoji, ButtonGroup } from '#storybook/components'
-import notifier, { ZeitToast, NotifierPortal } from './index'
+import notifier, { ZeitToast, NotifierPortal } from 'zeit-toast-clone'
+import { Button, Emoji, ButtonGroup } from './components'
 
 export default { title: 'notifier' }
 

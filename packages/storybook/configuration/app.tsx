@@ -1,7 +1,7 @@
 import React from 'react'
 import addons from '@storybook/addons'
-import { Container } from './components'
-import { DarkModeContext } from '../src/contexts'
+import { DarkModeContext } from 'zeit-toast-clone'
+import { Container } from '../src/components'
 
 const DARK_MODE_ADDON_STORAGE_KEY = 'sb-addon-themes-3'
 const DARK_MODE_ADDON_CHANNEL = 'DARK_MODE'

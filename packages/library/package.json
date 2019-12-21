@@ -1,0 +1,43 @@
+{
+  "name": "zeit-toast-clone",
+  "version": "1.0.0",
+  "private": false,
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rqbazan/zeit-toast-clone.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "toast",
+    "animated",
+    "zeit",
+    "react"
+  ],
+  "files": [
+    "lib"
+  ],
+  "author": {
+    "name": "Ricardo Alexis Quiroz Bazan",
+    "email": "raquirozbazan@gmail.com",
+    "url": "http://github.com/rqbazan"
+  },
+  "scripts": {
+    "prepublishOnly": "yarn build",
+    "build": "rollup -c",
+    "dev": "rollup -cw"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-spring": "^8.0.0",
+    "styled-components": "^4.3.2 || ^5.0.0"
+  },
+  "devDependencies": {
+    "rollup": "^1.27.13",
+    "rollup-plugin-dts": "^1.1.13",
+    "rollup-plugin-typescript": "^1.0.1"
+  }
+}
