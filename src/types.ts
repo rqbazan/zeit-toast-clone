@@ -1,3 +1,5 @@
+import { ReactPortal } from 'react'
+
 export type MessageKind = 'error' | 'warning' | 'success' | 'info'
 
 export type Toast = {
@@ -27,5 +29,5 @@ export interface IMountOptions {
 }
 
 export interface INotifier extends Toast {
-  portal(options: IMountOptions): React.ReactPortal
+  portal(options: IMountOptions): ReactPortal
 }
