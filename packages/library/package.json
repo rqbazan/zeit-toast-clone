@@ -1,7 +1,10 @@
 {
   "name": "zeit-toast-clone",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": false,
+  "engines": {
+    "node": "12.x"
+  },
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
@@ -36,8 +39,8 @@
     "styled-components": "^4.3.2 || ^5.0.0"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^2.0.1",
     "rollup": "^1.27.13",
-    "rollup-plugin-dts": "^1.1.13",
-    "rollup-plugin-typescript": "^1.0.1"
+    "rollup-plugin-dts": "^1.1.13"
   }
 }
