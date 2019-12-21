@@ -3,8 +3,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "packages/storybook/package.json",
-      "use": "@now/static-build"
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "packages/storybook/public"
+      }
     }
   ]
 }
