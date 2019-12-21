@@ -30,7 +30,7 @@ export class ZeitToast implements INotifier {
     this.managerRef = React.createRef<NotificationManager>()
   }
 
-  portal(options: IMountOptions = ZeitToast.defaultOptions) {
+  portal(options: IMountOptions = ZeitToast.defaultOptions): React.ReactPortal {
     this.init()
 
     return ReactDOM.createPortal(

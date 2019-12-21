@@ -29,49 +29,37 @@
     "build:dts": "node ./dts-generator.js",
     "prepublishOnly": "yarn build:js && yarn build:dts",
     "build": "build-storybook -o public",
-    "develop": "start-storybook -p 6006",
-    "lint": "eslint --ext ts,js,tsx ."
+    "dev": "start-storybook -p 3000",
+    "lint": "eslint --ignore-path .gitignore . --ext ts,tsx,js",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.{ts,tsx,js,json,md}\"",
+    "format": "yarn prettier --write",
+    "check-format": "yarn prettier --list-different",
+    "check-types": "tsc",
+    "validate": "npm-run-all --parallel check-format check-types lint build:js build:dts"
   },
   "eslintIgnore": [
     "lib"
   ],
-  "eslintConfig": {
-    "extends": "rqbazan-ts/react",
-    "rules": {
-      "@typescript-eslint/interface-name-prefix": "off",
-      "react/destructuring-assignment": "off",
-      "no-plusplus": "off",
-      "react/state-in-constructor": "off",
-      "import/prefer-default-export": "off",
-      "react/jsx-props-no-spreading": "off",
-      "import/no-extraneous-dependencies": [
-        "error",
-        {
-          "devDependencies": [
-            "**/*.stories.js",
-            "*.config.js",
-            "dts-generator.js"
-          ]
-        }
-      ],
-      "react/jsx-filename-extension": [
-        "error",
-        {
-          "extensions": [
-            ".js",
-            ".tsx"
-          ]
-        }
-      ],
-      "import/no-unresolved": [
-        "error",
-        {
-          "ignore": [
-            "^#storybook"
-          ]
-        }
-      ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,json,md}": [
+      "prettier --ignore-path .gitignore --write",
+      "git add"
+    ],
+    "*.{ts,tsx,js}": [
+      "eslint --ignore-path .gitignore --fix",
+      "git add"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -80,29 +68,34 @@
     "styled-components": "^4.3.2 || ^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@storybook/addon-knobs": "^5.2.0-rc.8",
-    "@storybook/addon-storysource": "^5.2.0-rc.8",
-    "@storybook/addon-viewport": "^5.1.11",
-    "@storybook/react": "^5.2.0-rc.8",
-    "@storybook/theming": "^5.2.0-rc.8",
-    "@types/react": "^16.8.25",
-    "@types/react-dom": "^16.8.5",
-    "@types/styled-components": "^4.1.18",
+    "@babel/core": "^7.7.7",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@storybook/addon-knobs": "^5.2.8",
+    "@storybook/addon-storysource": "^5.2.8",
+    "@storybook/addon-viewport": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "@storybook/theming": "^5.2.8",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "@types/styled-components": "^4.4.1",
     "babel-loader": "^8.0.6",
-    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "dts-generator": "^3.0.0",
-    "eslint": "^6.3.0",
-    "eslint-config-rqbazan-ts": "^0.1.4",
-    "prettier": "^1.18.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "eslint": "^6.8.0",
+    "eslint-config-rqbazan-ts": "^0.3.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-spring": "^8.0.27",
-    "rollup": "^1.20.3",
+    "rollup": "^1.27.13",
     "rollup-plugin-typescript": "^1.0.1",
-    "storybook-dark-mode": "0.1.7",
-    "styled-components": "^5.0.0-beta.8",
+    "storybook-dark-mode": "0.2.0",
+    "styled-components": "^4.4.1",
     "tslib": "^1.10.0",
-    "typescript": "3.5.3"
+    "typescript": "3.7.4"
   }
 }
