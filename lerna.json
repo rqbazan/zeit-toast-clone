@@ -6,8 +6,7 @@
   "command": {
     "publish": {
       "conventionalCommits": true,
-      "message": "chore(lerna): publish 🍕 [ci skip]",
-      "registry": "https://registry.npmjs.org/"
+      "message": "chore(lerna): publish 🍕 [ci skip]"
     }
   }
 }
