@@ -3,10 +3,15 @@ name: CI
 on: [push]
 
 jobs:
-  test:
+  build_and_static_testing:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - uses: actions/checkout@master
 
       - uses: actions/setup-node@master
@@ -21,6 +26,29 @@ jobs:
 
       - name: Static testing
         run: yarn validate
+
+        env:
+          CI: true
+
+  release:
+    runs-on: ubuntu-latest
+
+    needs: build_and_static_testing
+
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/setup-node@master
+        with:
+          node-version: '12.x'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build packages
+        run: yarn build:lib
 
         env:
           CI: true
