@@ -10489,26 +10489,12 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rollup-plugin-css-only@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-css-only/-/rollup-plugin-css-only-2.0.0.tgz#696a0d0bc8072f3cb67eb830ebb579e3bad7ecf6"
-  integrity sha512-RdzeDgrKHrvixVF001fbK/G1C6wZYSs49lBon4dqeW4awgVhPWaaogXtVnVUBbtIeAF5kxaZQI1tJ+UYL0nswg==
-  dependencies:
-    rollup-pluginutils "^2.3.3"
-
 rollup-plugin-dts@^1.1.13:
   version "1.1.13"
   resolved "https://registry.yarnpkg.com/rollup-plugin-dts/-/rollup-plugin-dts-1.1.13.tgz#e7caa3b34b1dd3ba6504a6778337296b7d0c831a"
   integrity sha512-vpCSjTFodt8saLkFAi/Xn7JFgs2ZnbFYRbYyirlZjQtxS81JhU7oXuuyC9UrkftIot+/JbuavPOtI9OQoVQIcQ==
   optionalDependencies:
     "@babel/code-frame" "^7.5.5"
-
-rollup-pluginutils@^2.3.3:
-  version "2.8.2"
-  resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.8.2.tgz#72f2af0748b592364dbd3389e600e5a9444a351e"
-  integrity sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==
-  dependencies:
-    estree-walker "^0.6.1"
 
 rollup@^1.27.13:
   version "1.27.13"
