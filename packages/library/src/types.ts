@@ -23,9 +23,7 @@ export interface INotification {
 
 export interface IMountOptions {
   height: number
-  width: number
   offset: number
-  zIndex: number
   component: React.ComponentType<INotification>
 }
 

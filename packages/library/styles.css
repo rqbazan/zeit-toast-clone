@@ -32,6 +32,12 @@
   user-select: none;
 }
 
+.ztc-message {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .ztc-notification.error {
   background-color: var(--ztc-bg-error);
 }

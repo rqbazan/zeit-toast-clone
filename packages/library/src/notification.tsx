@@ -17,5 +17,9 @@ export default function Notification({
     .filter(Boolean)
     .join(' ')
 
-  return <div className={classNames}>{message}</div>
+  return (
+    <div className={classNames}>
+      <span className="ztc-message">{message}</span>
+    </div>
+  )
 }
