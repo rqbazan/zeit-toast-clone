@@ -50,12 +50,12 @@ const Component = () => {
 
 ### `notifier`
 
-| Attribute | Type                    | Description                 |
-| --------- | ----------------------- | --------------------------- |
-| `info`    | `(msg: string) => void` | Show an info notification   |
-| `error`   | `(msg: string) => void` | Show an error notification  |
-| `success` | `(msg: string) => void` | Show a success notification |
-| `warning` | `(msg: string) => void` | Show a warning notification |
+| Attribute | Type                        | Description                 |
+| --------- | --------------------------- | --------------------------- |
+| `info`    | `(message: string) => void` | Show an info notification   |
+| `error`   | `(message: string) => void` | Show an error notification  |
+| `success` | `(message: string) => void` | Show a success notification |
+| `warning` | `(message: string) => void` | Show a warning notification |
 
 ### `<Notification />`
 
