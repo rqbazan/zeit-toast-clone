@@ -5,8 +5,6 @@ powered by the awesome `react-spring` library. 😍
 
 ## Basic Usage
 
----
-
 Install the library and its peer dependencies
 
 ```bash
@@ -42,8 +40,6 @@ const Component = () => {
 
 ## API
 
----
-
 ### `<NotifierPortal />`
 
 | PropName    | Type             | Default        | Description                                         |
@@ -54,12 +50,12 @@ const Component = () => {
 
 ### `notifier`
 
-| Attribute | Type                    | Description                 |
-| --------- | ----------------------- | --------------------------- |
-| `info`    | `(msg: string) => void` | Show an info notification   |
-| `error`   | `(msg: string) => void` | Show an error notification  |
-| `success` | `(msg: string) => void` | Show a success notification |
-| `warning` | `(msg: string) => void` | Show a warning notification |
+| Attribute | Type                        | Description                 |
+| --------- | --------------------------- | --------------------------- |
+| `info`    | `(message: string) => void` | Show an info notification   |
+| `error`   | `(message: string) => void` | Show an error notification  |
+| `success` | `(message: string) => void` | Show a success notification |
+| `warning` | `(message: string) => void` | Show a warning notification |
 
 ### `<Notification />`
 
@@ -73,15 +69,11 @@ const Component = () => {
 
 ## Customize
 
----
-
 The first level of customization is possible through the props of
 `<NotifierPortal />`, but also
 [there is a few CSS classes and variables.](https://github.com/rqbazan/zeit-toast-clone/blob/master/packages/library/styles.css)
 
 ## Demo
-
----
 
 I created a storybook application dedicated to the demo:
 https://zeit-toast-clone.rqbazan.now.sh
