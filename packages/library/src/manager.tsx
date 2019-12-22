@@ -1,11 +1,8 @@
 import React from 'react'
-import { Container } from './elements'
-import AnimatedContainer, {
-  MAX_NUM_OF_NOTIFICATIONS
-} from '../animated-container'
-import InverseIndexedQueue from '../helpers/inverse-indexed-queue'
-import Timer from '../helpers/timer'
-import { INotification, AnimatedNotification, IMountOptions } from '../types'
+import { INotification, AnimatedNotification, IMountOptions } from './types'
+import AnimatedContainer, { MAX_NOTIFICATIONS } from './animated-container'
+import InverseIndexedQueue from './helpers/inverse-indexed-queue'
+import Timer from './helpers/timer'
 
 export interface IState {
   isOverviewing: boolean
@@ -29,7 +26,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
     return {
       isOverviewing: false,
       animatedNotifications: new InverseIndexedQueue<AnimatedNotification>(
-        MAX_NUM_OF_NOTIFICATIONS + 1
+        MAX_NOTIFICATIONS + 1
       )
     }
   }
@@ -117,11 +114,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
 
   render() {
     return (
-      <Container
-        zIndex={this.props.zIndex}
-        offset={this.props.offset}
-        width={this.props.width}
-      >
+      <div className="ztc-container">
         <AnimatedContainer
           offset={this.props.offset}
           height={this.props.height}
@@ -130,7 +123,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
           notifications={this.state.animatedNotifications.items}
           onOverviewToogle={this.onOverviewToogle}
         />
-      </Container>
+      </div>
     )
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTransition, UseTransitionResult, animated } from 'react-spring'
-import { AnimatedNotification, INotification } from '../types'
+import { AnimatedNotification, INotification } from './types'
 
 export interface IAnimatedContainerProps {
   notifications: AnimatedNotification[]
@@ -16,7 +16,7 @@ export type NotificationTransition = UseTransitionResult<
   React.CSSProperties
 >
 
-export const MAX_NUM_OF_NOTIFICATIONS = 3
+export const MAX_NOTIFICATIONS = 3
 
 const SCALE_STEP = 0.05
 
@@ -76,7 +76,7 @@ const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
 
     return {
       transform: `${transforms.translate} ${transforms.scale}`,
-      opacity: item.index < MAX_NUM_OF_NOTIFICATIONS ? 1 : 0
+      opacity: item.index < MAX_NOTIFICATIONS ? 1 : 0
     }
   }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import defaultConfig from './default-config'
 import { INotifier, INotification, IMountOptions } from './types'
-import NotificationManager from './notification-manager'
+import NotificationManager from './manager'
 
 export class Notifier implements INotifier {
   static defaultConfig = defaultConfig

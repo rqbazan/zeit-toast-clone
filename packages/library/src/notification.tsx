@@ -1,7 +1,6 @@
 import React from 'react'
-import { MessageKind } from '../types'
-import { DarkModeContext } from '../contexts'
-import { Container } from './elements'
+import { MessageKind } from './types'
+import { DarkModeContext } from './contexts'
 
 export interface INotificationProps {
   kind: MessageKind
@@ -14,9 +13,9 @@ export default function Notification({
 }: INotificationProps) {
   const darkMode = React.useContext(DarkModeContext)
 
-  return (
-    <Container darkMode={darkMode} kind={kind}>
-      <p>{message}</p>
-    </Container>
-  )
+  const classNames = ['ztc-notification', kind, darkMode && 'dark']
+    .filter(Boolean)
+    .join(' ')
+
+  return <div className={classNames}>{message}</div>
 }
