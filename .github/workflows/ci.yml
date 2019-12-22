@@ -47,8 +47,13 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build packages
+      - name: Build library
         run: yarn build:lib
+      
+      - name: Release to NPM
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn ci:publish
 
         env:
           CI: true
