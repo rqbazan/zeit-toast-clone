@@ -4,7 +4,12 @@ import { withKnobs } from '@storybook/addon-knobs'
 import * as themes from './themes'
 import App from './app'
 
-addParameters({ darkMode: themes })
+addParameters({
+  darkMode: themes,
+  options: {
+    panelPosition: 'right'
+  }
+})
 
 addDecorator(withKnobs)
 
