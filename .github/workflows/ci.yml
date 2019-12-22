@@ -49,11 +49,10 @@ jobs:
 
       - name: Build library
         run: yarn build:lib
-      
+
       - name: Release to NPM
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: yarn ci:publish
 
         env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           CI: true
