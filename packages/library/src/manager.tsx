@@ -1,14 +1,17 @@
 import React from 'react'
-import { Container } from './elements'
-import AnimatedContainer from '../animated-container'
-import InverseIndexedQueue from '../helpers/inverse-indexed-queue'
-import Timer from '../helpers/timer'
-import { INotification, AnimatedNotification, IMountOptions } from '../types'
+import { INotification, AnimatedNotification, IMountOptions } from './types'
+import AnimatedContainer, { MAX_NOTIFICATIONS } from './animated-container'
+import InverseIndexedQueue from './helpers/inverse-indexed-queue'
+import Timer from './helpers/timer'
 
 export interface IState {
   isOverviewing: boolean
   animatedNotifications: InverseIndexedQueue<AnimatedNotification>
 }
+
+const COLLAPSE_INTERVAL = 3_00
+
+const TIMEOUT = 3_000
 
 class NotificationManager extends React.Component<IMountOptions, IState> {
   countNotifications = 0
@@ -23,7 +26,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
     return {
       isOverviewing: false,
       animatedNotifications: new InverseIndexedQueue<AnimatedNotification>(
-        this.props.capacity + 1
+        MAX_NOTIFICATIONS + 1
       )
     }
   }
@@ -41,7 +44,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
 
     this.dominoTimer.init(() => {
       this.domino()
-    }, this.props.interval)
+    }, COLLAPSE_INTERVAL)
   }
 
   cancelTimers = () => {
@@ -54,7 +57,7 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
 
     this.cleanUpTimer.init(() => {
       this.domino()
-    }, this.props.timeout)
+    }, TIMEOUT)
   }
 
   generateNextKey = () => {
@@ -111,14 +114,16 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
 
   render() {
     return (
-      <Container zIndex={this.props.zIndex}>
+      <div className="ztc-container">
         <AnimatedContainer
-          capacity={this.props.capacity}
+          offset={this.props.offset}
+          height={this.props.height}
+          component={this.props.component}
           isOverviewing={this.state.isOverviewing}
           notifications={this.state.animatedNotifications.items}
           onOverviewToogle={this.onOverviewToogle}
         />
-      </Container>
+      </div>
     )
   }
 }

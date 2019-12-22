@@ -8,7 +8,7 @@ module.exports = ({ config }) => {
   })
 
   config.module.rules.push({
-    test: /\.stories\.js$/,
+    test: /\.stories\.tsx$/,
     loader: '@storybook/source-loader',
     options: {
       prettierConfig: {

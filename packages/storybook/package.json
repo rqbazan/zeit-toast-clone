@@ -18,5 +18,9 @@
     "@storybook/theming": "^5.2.8",
     "storybook-dark-mode": "0.2.0",
     "zeit-toast-clone": "0.0.0"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^4.4.1",
+    "styled-components": "^4.4.1"
   }
 }

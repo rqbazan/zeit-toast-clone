@@ -2,7 +2,7 @@ import React from 'react'
 import { text, select } from '@storybook/addon-knobs'
 import { Notification } from 'zeit-toast-clone'
 
-export default { title: 'Notification' }
+export default { title: 'notification' }
 
 export const Playground = () => {
   const message = text('message', 'Hello world!')

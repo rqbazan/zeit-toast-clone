@@ -1,14 +1,13 @@
 import React from 'react'
-import { useTransition, UseTransitionResult } from 'react-spring'
-import { NotificationContainer } from './elements'
-import Notification from '../notification'
-import { AnimatedNotification } from '../types'
-import vars from '../vars'
+import { useTransition, UseTransitionResult, animated } from 'react-spring'
+import { AnimatedNotification, INotification } from './types'
 
 export interface IAnimatedContainerProps {
   notifications: AnimatedNotification[]
-  capacity: number
+  component: React.ComponentType<INotification>
   isOverviewing: boolean
+  offset: number
+  height: number
   onOverviewToogle(isOverviewing: boolean): void
 }
 
@@ -17,21 +16,27 @@ export type NotificationTransition = UseTransitionResult<
   React.CSSProperties
 >
 
-const getUpdateTransforms = (index: number) => {
-  const scaleFactor = vars.scaleStep * index
-  const translateFactor = vars.translateStep * index
+export const MAX_NOTIFICATIONS = 3
+
+const SCALE_STEP = 0.05
+
+const TRANSLATE_STEP = 10
+
+const getUpdateTransforms = (index: number, height: number) => {
+  const scaleFactor = SCALE_STEP * index
+  const translateFactor = TRANSLATE_STEP * index
 
   return {
-    translate: `translate(0, -${vars.height + translateFactor}px)`,
+    translate: `translate(0, -${height + translateFactor}px)`,
     scale: `scale(${1 - scaleFactor})`
   }
 }
 
-const getOverviewTransforms = (index: number) => {
-  const translateFactor = (vars.translateStep + vars.height) * index
+const getOverviewTransforms = (index: number, height: number) => {
+  const translateFactor = (TRANSLATE_STEP + height) * index
 
   return {
-    translate: `translate(0, -${vars.height + translateFactor}px)`,
+    translate: `translate(0, -${height + translateFactor}px)`,
     scale: `scale(1)`
   }
 }
@@ -54,8 +59,10 @@ const useClickOutside = (listener: EventListener) => {
 
 const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
   const {
+    height,
+    offset,
     notifications: items,
-    capacity,
+    component: Notification,
     isOverviewing,
     onOverviewToogle
   } = props
@@ -64,26 +71,24 @@ const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
 
   const updateTransition = (item: AnimatedNotification) => {
     const transforms = isOverviewing
-      ? getOverviewTransforms(item.index)
-      : getUpdateTransforms(item.index)
+      ? getOverviewTransforms(item.index, height)
+      : getUpdateTransforms(item.index, height)
 
     return {
       transform: `${transforms.translate} ${transforms.scale}`,
-      opacity: item.index < capacity ? 1 : 0
+      opacity: item.index < MAX_NOTIFICATIONS ? 1 : 0
     }
   }
-
-  const hiddenBottomPosition = vars.height + vars.position.bottom
 
   const transitions = useTransition(items, item => item.key, {
     update: updateTransition,
     onDestroyed: () => onOverviewToogle(false),
     from: {
-      transform: `translate(0, ${hiddenBottomPosition}px) scale(1)`,
+      transform: `translate(0, ${height + offset}px) scale(1)`,
       opacity: 0
     },
     enter: {
-      transform: `translate(0, -${vars.height}px) scale(1)`,
+      transform: `translate(0, -${height}px) scale(1)`,
       opacity: 1
     },
     leave: { opacity: 0 }
@@ -93,9 +98,9 @@ const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
     const { key, props: style, item: notification } = transition
 
     return (
-      <NotificationContainer
+      <animated.div
         key={key}
-        style={style}
+        style={{ height, position: 'absolute', width: '100%', ...style }}
         onMouseEnter={() => onOverviewToogle(true)}
         onMouseLeave={() => onOverviewToogle(false)}
         onClick={(e: React.SyntheticEvent) => {
@@ -105,7 +110,7 @@ const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
         }}
       >
         <Notification {...notification} />
-      </NotificationContainer>
+      </animated.div>
     )
   }
 

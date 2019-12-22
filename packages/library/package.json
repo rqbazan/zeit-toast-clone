@@ -20,7 +20,8 @@
     "react"
   ],
   "files": [
-    "lib"
+    "lib",
+    "styles.css"
   ],
   "author": {
     "name": "Ricardo Alexis Quiroz Bazan",
@@ -35,8 +36,7 @@
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "react-spring": "^8.0.0",
-    "styled-components": "^4.3.2 || ^5.0.0"
+    "react-spring": "^8.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^2.0.1",
