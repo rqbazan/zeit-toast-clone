@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 import { MessageKind } from '../types'
-import vars from '../vars'
 
 export interface IContainerProps {
-  darkMode?: boolean
   kind: MessageKind
+  darkMode?: boolean
 }
 
 export type BgColors = {
@@ -64,8 +63,8 @@ export const Container = styled.div<IContainerProps>`
   box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 10px 0px;
   color: ${getColor};
   display: flex;
-  font-family: 'Open Sans', sans-serif;
-  height: ${vars.height}px;
+  height: 64px;
   padding: 0 24px;
+  user-select: none;
   ${getBorder}
 `

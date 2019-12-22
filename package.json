@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "build:lib": "yarn lerna run build --scope=zeit-toast-clone",
+    "build:lib": "lerna run build --scope=zeit-toast-clone",
     "check-types": "lerna exec --parallel -- tsc --noEmit",
     "dev": "lerna run dev --parallel",
     "lint": "eslint --ignore-path .gitignore . --ext ts,tsx,js",

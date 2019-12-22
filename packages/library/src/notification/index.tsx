@@ -1,34 +1,22 @@
 import React from 'react'
-import { Container } from './elements'
 import { MessageKind } from '../types'
 import { DarkModeContext } from '../contexts'
+import { Container } from './elements'
 
 export interface INotificationProps {
   kind: MessageKind
   message: string
-  className?: string
-  style?: React.CSSProperties
 }
 
-const Notification: React.FC<INotificationProps> = props => {
-  const { style, className, message, kind } = props
-
+export default function Notification({
+  message,
+  kind = 'info'
+}: INotificationProps) {
   const darkMode = React.useContext(DarkModeContext)
 
   return (
-    <Container
-      darkMode={darkMode}
-      kind={kind}
-      style={style}
-      className={className}
-    >
+    <Container darkMode={darkMode} kind={kind}>
       <p>{message}</p>
     </Container>
   )
 }
-
-Notification.defaultProps = {
-  kind: 'info'
-}
-
-export default Notification

@@ -1,39 +1,27 @@
 import React from 'react'
-import { text, select, number } from '@storybook/addon-knobs'
-import notifier, { ZeitToast, NotifierPortal } from 'zeit-toast-clone'
-import { Button, Emoji, ButtonGroup } from './components'
+import { text, select, boolean } from '@storybook/addon-knobs'
+import notifier, { NotifierPortal, IMountOptions } from 'zeit-toast-clone'
+import Button from './components/button'
+import Emoji from './components/emoji'
+import ButtonGroup from './components/button-group'
+import CustomNotification from './components/custom-notification'
 
 export default { title: 'notifier' }
 
 export const Playground = () => {
-  const message = text('message', 'Hello world!', 'notification')
+  const message = text('message', 'Hello world!')
 
   const kind = select(
     'kind',
     ['info', 'error', 'success', 'warning'],
-    'success',
-    'notification'
+    'success'
   )
 
-  const notifierOptions = {
-    timeout: number(
-      'timeout',
-      ZeitToast.defaultOptions.timeout,
-      undefined,
-      'notifier'
-    ),
-    interval: number(
-      'interval',
-      ZeitToast.defaultOptions.interval,
-      undefined,
-      'notifier'
-    ),
-    capacity: number(
-      'capacity',
-      ZeitToast.defaultOptions.capacity,
-      undefined,
-      'notifier'
-    )
+  const notifierOptions: Partial<IMountOptions> = {}
+
+  if (boolean('custom component', false)) {
+    notifierOptions.component = CustomNotification
+    notifierOptions.height = 40
   }
 
   const show = () => {

@@ -1,4 +1,4 @@
-import { ReactPortal } from 'react'
+import React from 'react'
 
 export type MessageKind = 'error' | 'warning' | 'success' | 'info'
 
@@ -22,12 +22,13 @@ export interface INotification {
 }
 
 export interface IMountOptions {
-  timeout: number
-  capacity: number
-  interval: number
-  zIndex?: number
+  height: number
+  width: number
+  offset: number
+  zIndex: number
+  component: React.ComponentType<INotification>
 }
 
 export interface INotifier extends Toast {
-  portal(options: IMountOptions): ReactPortal
+  portal(options: IMountOptions): React.ReactPortal
 }
