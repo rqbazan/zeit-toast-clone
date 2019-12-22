@@ -15,7 +15,7 @@ npx install-peerdeps zeit-toast-clone
 ```
 
 Import and render the `NotifierPortal` component in the root of your
-application, also the styles.
+application, as well as the styles.
 
 ```jsx
 import { NotifierPortal } from 'zeit-toast-clone'
@@ -56,8 +56,8 @@ const Component = () => {
 
 | Attribute | Type                    | Description                 |
 | --------- | ----------------------- | --------------------------- |
-| `info`    | `(msg: string) => void` | Show a info notification    |
-| `error`   | `(msg: string) => void` | Show a error notification   |
+| `info`    | `(msg: string) => void` | Show an info notification   |
+| `error`   | `(msg: string) => void` | Show an error notification  |
 | `success` | `(msg: string) => void` | Show a success notification |
 | `warning` | `(msg: string) => void` | Show a warning notification |
 
@@ -66,15 +66,15 @@ const Component = () => {
 > This component wasn't created to be customizable, I exposed it just for demo
 > purposes on the storybook package.
 
-| PropName  | Type                                       | Description                  |
-| --------- | ------------------------------------------ | ---------------------------- |
-| `kind`    | `'error' | 'warning' | 'success' | 'info'` | Flavor of the notification   |
-| `message` | `string`                                   | Content displayed as message |
+| PropName  | Type                                          | Description                  |
+| --------- | --------------------------------------------- | ---------------------------- |
+| `kind`    | `'error' \| 'warning' \| 'success' \| 'info'` | Flavor of the notification   |
+| `message` | `string`                                      | Content displayed as message |
 
 ## Customize
 
 ---
 
 The first level of customization is possible through the props of
-`<NotifierPortal />`, but
-[also there is a few CSS classes and variables.](https://github.com/rqbazan/zeit-toast-clone/blob/master/packages/library/styles.css)
+`<NotifierPortal />`, but also
+[there is a few CSS classes and variables.](https://github.com/rqbazan/zeit-toast-clone/blob/master/packages/library/styles.css)
