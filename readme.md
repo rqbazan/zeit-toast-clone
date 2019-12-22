@@ -78,3 +78,10 @@ const Component = () => {
 The first level of customization is possible through the props of
 `<NotifierPortal />`, but also
 [there is a few CSS classes and variables.](https://github.com/rqbazan/zeit-toast-clone/blob/master/packages/library/styles.css)
+
+## Demo
+
+---
+
+I created a storybook application dedicated to the demo:
+https://zeit-toast-clone.rqbazan.now.sh
