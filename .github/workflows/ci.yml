@@ -47,9 +47,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build library
-        run: yarn build:lib
-
       - name: Release to NPM
         run: yarn ci:publish
 
