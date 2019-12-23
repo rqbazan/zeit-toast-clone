@@ -11,9 +11,9 @@ class InverseIndexedQueue<Item extends Indexable> {
 
   readonly items: Item[]
 
-  constructor(capacity: number) {
+  constructor(capacity: number, items: Item[] = []) {
     this.capacity = capacity
-    this.items = []
+    this.items = items
   }
 
   get length() {
@@ -35,6 +35,10 @@ class InverseIndexedQueue<Item extends Indexable> {
 
   pop() {
     this.items.shift()
+  }
+
+  clone() {
+    return new InverseIndexedQueue(this.capacity, this.items)
   }
 }
 
