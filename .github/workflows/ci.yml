@@ -58,7 +58,7 @@ jobs:
 
       - name: Prepare publish
         run: |
-          git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/${{ GITHUB_REPOSITORY }}.git
+          git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
           git checkout master
 
       - name: Release to NPM
