@@ -18,7 +18,7 @@
     "format": "yarn prettier --write",
     "check-format": "yarn prettier --list-different",
     "validate": "npm-run-all --parallel check-format check-types lint",
-    "ci:publish": "lerna publish --yes --registry https://registry.npmjs.org/:_authToken=${NPM_TOKEN} --no-verify-access"
+    "ci:publish": "lerna publish from-package -y --no-verify-access"
   },
   "husky": {
     "hooks": {
