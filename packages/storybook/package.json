@@ -1,6 +1,6 @@
 {
   "name": "zeit-toast-clone-storybook",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "engines": {
     "node": "12.x"
@@ -17,7 +17,7 @@
     "@storybook/react": "^5.2.8",
     "@storybook/theming": "^5.2.8",
     "storybook-dark-mode": "0.2.0",
-    "zeit-toast-clone": "*"
+    "zeit-toast-clone": "^0.0.1"
   },
   "devDependencies": {
     "@types/styled-components": "^4.4.1",

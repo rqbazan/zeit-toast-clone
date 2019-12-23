@@ -1,6 +1,6 @@
 {
   "name": "zeit-toast-clone",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": false,
   "engines": {
     "node": "12.x"
