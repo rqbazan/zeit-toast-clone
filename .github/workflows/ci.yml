@@ -58,6 +58,8 @@ jobs:
 
       - name: Prepare publish
         run: |
+          git config user.email "${{ github.event.head_commit.author.email }}"
+          git config user.name "${{ github.event.head_commit.author.name }}"
           git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
           git checkout master
 
