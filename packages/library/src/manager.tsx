@@ -13,7 +13,7 @@ const COLLAPSE_INTERVAL = 3_00
 
 const TIMEOUT = 3_000
 
-class NotificationManager extends React.Component<IMountOptions, IState> {
+class NotificationManager extends React.PureComponent<IMountOptions, IState> {
   countNotifications = 0
 
   cleanUpTimer = new Timer()
@@ -70,7 +70,9 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
 
       animatedNotifications.pop()
 
-      return { animatedNotifications }
+      return {
+        animatedNotifications: animatedNotifications.clone()
+      }
     }
 
     this.setState(updateState)
@@ -88,7 +90,9 @@ class NotificationManager extends React.Component<IMountOptions, IState> {
         key: this.generateNextKey()
       })
 
-      return { animatedNotifications }
+      return {
+        animatedNotifications: animatedNotifications.clone()
+      }
     }
 
     this.setState(updateState)

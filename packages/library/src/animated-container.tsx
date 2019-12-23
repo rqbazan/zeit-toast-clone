@@ -67,7 +67,11 @@ const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
     onOverviewToogle
   } = props
 
-  useClickOutside(() => onOverviewToogle(false))
+  useClickOutside(() => {
+    if (isOverviewing) {
+      onOverviewToogle(false)
+    }
+  })
 
   const updateTransition = (item: AnimatedNotification) => {
     const transforms = isOverviewing
@@ -103,7 +107,7 @@ const AnimatedContainer: React.FC<IAnimatedContainerProps> = props => {
         style={{ height, position: 'absolute', width: '100%', ...style }}
         onMouseEnter={() => onOverviewToogle(true)}
         onMouseLeave={() => onOverviewToogle(false)}
-        onClick={(e: React.SyntheticEvent) => {
+        onClick={e => {
           e.stopPropagation()
           e.nativeEvent.stopImmediatePropagation()
           onOverviewToogle(true)

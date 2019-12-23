@@ -17,8 +17,7 @@
     "prettier": "prettier --ignore-path .gitignore \"**/*.{ts,tsx,js,json,md}\"",
     "format": "yarn prettier --write",
     "check-format": "yarn prettier --list-different",
-    "validate": "npm-run-all --parallel check-format check-types lint",
-    "ci:publish": "lerna publish from-package -y --no-verify-access"
+    "validate": "npm-run-all --parallel check-format check-types lint"
   },
   "husky": {
     "hooks": {
