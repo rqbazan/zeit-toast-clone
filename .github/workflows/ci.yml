@@ -1,6 +1,12 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build_and_static_testing:
@@ -37,7 +43,7 @@ jobs:
 
     needs: build_and_static_testing
 
-    if: github.ref == 'refs/heads/master'
+    if: github.event_name == 'push'
 
     steps:
       - uses: actions/checkout@master
@@ -50,8 +56,13 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Prepare publish
+        run: |
+          git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/${{ GITHUB_REPOSITORY }}.git
+          git checkout master
+
       - name: Release to NPM
-        run: yarn ci:publish
+        run: npx lerna publish -y
 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
