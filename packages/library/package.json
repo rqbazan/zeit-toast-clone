@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^2.0.1",
-    "rollup": "^1.27.13",
+    "rollup": "^2.2.0",
     "rollup-plugin-dts": "^1.1.13"
   }
 }
