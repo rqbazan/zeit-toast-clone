@@ -1,3 +1,7 @@
+*.log
+.DS_Store
 node_modules
-public
-lib
+.cache
+dist
+coverage
+storybook-static

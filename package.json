@@ -1,62 +1,83 @@
 {
-  "name": "zeit-toast-clone-monorepo",
-  "private": true,
-  "engines": {
-    "node": "12.x"
-  },
+  "name": "zeit-toast-clone",
+  "version": "0.0.1",
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
+  "author": "Ricardo Q. Bazan",
+  "main": "dist/index.js",
+  "module": "dist/zeit-toast-clone.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "styles.css"
   ],
   "scripts": {
-    "build": "lerna run build",
-    "build:lib": "lerna run build --scope=zeit-toast-clone",
-    "check-types": "lerna exec --parallel -- tsc --noEmit",
-    "dev": "lerna run dev --parallel",
-    "lint": "eslint --ignore-path .gitignore . --ext ts,tsx,js",
-    "prettier": "prettier --ignore-path .gitignore \"**/*.{ts,tsx,js,json,md}\"",
-    "format": "yarn prettier --write",
-    "check-format": "yarn prettier --list-different",
-    "validate": "npm-run-all --parallel check-format check-types lint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,json,md}": [
-      "prettier --ignore-path .gitignore --write",
-      "git add"
-    ],
-    "*.{ts,tsx,js}": [
-      "eslint --ignore-path .gitignore --fix",
-      "git add"
-    ]
+    "build": "dts build",
+    "check:lint": "dts lint",
+    "check:types": "tsc --noEmit",
+    "fix:format": "yarn prettier --write",
+    "fix:lint": "dts lint --fix",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.{js,ts,tsx}\"",
+    "size": "size-limit",
+    "storybook": "start-storybook",
+    "test:static": "run-p check:*",
+    "test:unit": "dts test --passWithNoTests",
+    "prepare": "husky install"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "dts lint --fix"
+    ]
+  },
   "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "@types/react": "^16.9.17",
-    "@types/react-dom": "^16.9.4",
-    "babel-loader": "^8.0.6",
-    "eslint": "^6.8.0",
-    "eslint-config-rqbazan-ts": "^0.3.1",
-    "husky": "^3.1.0",
-    "lerna": "^3.13.4",
-    "lint-staged": "^9.5.0",
+    "@babel/core": "^7.17.8",
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/addons": "^6.4.19",
+    "@storybook/react": "^6.4.19",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "@types/styled-components": "^5.1.24",
+    "babel-loader": "^8.2.4",
+    "dts-cli": "^1.4.0",
+    "eslint-plugin-prettier": "3.4.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.19.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-spring": "^8.0.27",
-    "typescript": "3.7.4"
-  }
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2",
+    "react-spring": "^8.0.0",
+    "size-limit": "^7.0.8",
+    "styled-components": "^5.3.5",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.3"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17",
+    "react-spring": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "size-limit": [
+    {
+      "path": "dist/zeit-toast-clone.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/zeit-toast-clone.esm.js",
+      "limit": "10 KB"
+    }
+  ]
 }
