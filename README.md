@@ -74,4 +74,4 @@ The first level of customization is possible through the props of
 ## Demo
 
 I created a storybook application dedicated to the demo:
-https://zeit-toast-clone.rqbazan.now.sh
+https://zeit-toast-clone.vercel.com

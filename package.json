@@ -12,16 +12,16 @@
     "styles.css"
   ],
   "scripts": {
-    "build": "tsdx build",
-    "check:lint": "tsdx lint",
+    "build": "dts build",
+    "check:lint": "dts lint",
     "check:types": "tsc --noEmit",
     "fix:format": "yarn prettier --write",
-    "fix:lint": "tsdx lint --fix",
+    "fix:lint": "dts lint --fix",
     "prettier": "prettier --ignore-path .gitignore \"**/*.{js,ts,tsx}\"",
     "size": "size-limit",
     "storybook": "start-storybook",
     "test:static": "run-p check:*",
-    "test:unit": "tsdx test --passWithNoTests",
+    "test:unit": "dts test --passWithNoTests",
     "prepare": "husky install"
   },
   "commitlint": {
@@ -31,7 +31,7 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "tsdx lint --fix"
+      "dts lint --fix"
     ]
   },
   "devDependencies": {
@@ -48,6 +48,7 @@
     "@types/react-dom": "^17.0.14",
     "@types/styled-components": "^5.1.24",
     "babel-loader": "^8.2.4",
+    "dts-cli": "^1.4.0",
     "eslint-plugin-prettier": "3.4.1",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.7",
@@ -58,7 +59,6 @@
     "react-spring": "^8.0.0",
     "size-limit": "^7.0.8",
     "styled-components": "^5.3.5",
-    "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
     "typescript": "^4.6.3"
   },
@@ -72,11 +72,11 @@
   },
   "size-limit": [
     {
-      "path": "dist/vercel-toast.cjs.production.min.js",
+      "path": "dist/zeit-toast-clone.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/vercel-toast.esm.js",
+      "path": "dist/zeit-toast-clone.esm.js",
       "limit": "10 KB"
     }
   ]

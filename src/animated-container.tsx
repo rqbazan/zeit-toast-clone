@@ -43,6 +43,7 @@ const comparator = (a: NotificationTransition, b: NotificationTransition) => {
 }
 
 const useClickOutside = (listener: EventListener) => {
+  // eslint-disable-next-line
   const callback = React.useCallback(listener, [])
 
   React.useEffect(() => {
